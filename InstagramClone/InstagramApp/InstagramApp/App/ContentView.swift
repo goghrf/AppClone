@@ -8,15 +8,51 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var selectedTab: TabItem = .home
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        
+        TabView(selection: $selectedTab) {
+            
+            HomeMainView()
+                .tabItem {
+                    Image(systemName: "house")
+                }
+                .tag(TabItem.home)
+            
+            SearchMainView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                }
+            
+            PostMainView()
+                .tabItem {
+                    Image(systemName: "plus.app")
+                }
+            
+            ReelsMainView()
+                .tabItem {
+                    Image(systemName: "play.rectangle")
+                }
+            
+            MyPageMainView()
+                .tabItem {
+                    Image(systemName: "person.circle")
+                }
         }
-        .padding()
+        .accentColor(.black)
     }
+}
+
+enum TabItem {
+    
+    case home
+    case search
+    case post
+    case reels
+    case myPage
 }
 
 #Preview {
